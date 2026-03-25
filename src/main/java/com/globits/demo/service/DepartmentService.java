@@ -38,7 +38,6 @@ public class DepartmentService {
         return departmentRepository.findById(id);
     }
 
-    // Tính năng lọc theo Company
     public List<Department> getDepartmentsByCompanyId(Long companyId) {
         return departmentRepository.findByCompanyId(companyId);
     }
@@ -49,7 +48,7 @@ public class DepartmentService {
             Department current = currentOpt.get();
             updated.setId(id);
             
-            // Bảo toàn company nếu không gửi lên
+           
             if (updated.getCompany() != null && updated.getCompany().getId() != null) {
                 companyRepository.findById(updated.getCompany().getId())
                                  .ifPresent(updated::setCompany);
@@ -57,7 +56,7 @@ public class DepartmentService {
                 updated.setCompany(current.getCompany());
             }
 
-            // Bảo toàn parent nếu không gửi lên
+   
             if (updated.getParent() != null && updated.getParent().getId() != null) {
                 departmentRepository.findById(updated.getParent().getId())
                                     .ifPresent(updated::setParent);

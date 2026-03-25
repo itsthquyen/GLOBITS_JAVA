@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -66,7 +67,7 @@ public class PersonService {
         Optional<Person> personOpt = personRepository.findById(id);
         if (personOpt.isPresent()) {
             Person person = personOpt.get();
-            String originalFileName = org.springframework.util.StringUtils.cleanPath(file.getOriginalFilename());
+            String originalFileName = StringUtils.cleanPath(file.getOriginalFilename());
             String fileName = id + "_" + originalFileName;
             String uploadDir = "uploads/avatars/";
             
@@ -80,7 +81,7 @@ public class PersonService {
                 Files.copy(inputStream, filePath, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
             }
             
-            // Lưu đường dẫn chuẩn web
+  
             person.setAvatar("/uploads/avatars/" + fileName);
             return personRepository.save(person);
         }

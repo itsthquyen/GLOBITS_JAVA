@@ -2,7 +2,7 @@ package com.globits.demo.service;
 
 import com.globits.demo.model.Project;
 import com.globits.demo.model.Person;
-import com.globits.demo.model.Company;
+
 import com.globits.demo.repository.ProjectRepository;
 import com.globits.demo.repository.PersonRepository;
 import com.globits.demo.repository.CompanyRepository;
