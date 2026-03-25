@@ -5,6 +5,7 @@ import com.globits.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +51,7 @@ public class PersonController {
     }
 
     @PostMapping("/{id}/avatar")
-    public Person uploadAvatar(@PathVariable("id") Long id, @RequestParam("file") org.springframework.web.multipart.MultipartFile file) {
+    public Person uploadAvatar(@PathVariable("id") Long id, @RequestParam("file") MultipartFile file) {
         try {
             return personService.uploadAvatar(id, file);
         } catch (java.io.IOException e) {
